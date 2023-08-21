@@ -2,7 +2,7 @@ import { integer, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { sql } from "@vercel/postgres";
 
-export const campaignTable = pgTable("file", {
+export const campaign = pgTable("campaign", {
     id: serial("id").primaryKey(),
     campaign: varchar("campaign", { length: 255 }).notNull(),
     ddv: varchar("ddv", { length: 255 }).notNull(),
