@@ -35,11 +35,10 @@ const camplist = [
 // change value of input and store it in its respective object
 const Addcampaign = () => {
   const [camp, setCamp] = useState(camplist);
-  function handleChange() {
-    const updatedCamp = camp.map((item, i) =>
-      i === index ? { ...item, value: newValue } : item
-    );
 
+  function handleChange(index, newValue) {
+    const updatedCamp = [...camp]; // Create a shallow copy of the array
+    updatedCamp[index].value = newValue; // Update the specific object's value
     setCamp(updatedCamp);
   }
   return (
