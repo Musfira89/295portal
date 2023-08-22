@@ -1,46 +1,59 @@
 "use client";
-import Buttons from "@/components/view/buttons";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+
 const camplist = [
   {
     title: "Campaign",
-    value: "FE",
+    value: "",
   },
   {
     title: "DDV/Without DDV",
-    value: "WITHOUT",
+    value: "",
   },
   {
     title: "PAYOUT",
-    value: "$16",
+    value: 0,
+  },
+  {
+    title: "NET",
+    value: 0,
   },
   {
     title: "STATES",
-    value: "CA GA VA",
+    value: "",
   },
   {
     title: "DID NUMBER",
-    value: "12345666",
+    value: 0,
   },
   {
     title: "TIMINGS",
-    value: "8TO5PM",
+    value: "",
   },
   {
     title: "FORM",
-    value: "LINK",
+    value: "",
   },
 ];
 
 // change value of input and store it in its respective object
 const Addcampaign = () => {
   const [camp, setCamp] = useState(camplist);
+  const router = useRouter();
 
   function handleChange(index, newValue) {
     const updatedCamp = [...camp]; // Create a shallow copy of the array
     updatedCamp[index].value = newValue; // Update the specific object's value
     setCamp(updatedCamp);
   }
+
+  async function handleSubmit() {
+    const res = await axios.post("/api/campaign", camp);
+    if (res.status === 200) router.push("/campaign");
+  }
+
   return (
     <div className="px-10 py-10 flex flex-col gap-4">
       {camp.map((item, index) => (
@@ -54,7 +67,13 @@ const Addcampaign = () => {
           />
         </div>
       ))}
-      <Buttons text={"ADD CAMPAIGN"} width={"w-40"} />
+      <button
+        className={`bg-[#ff914d] rounded-md px-4 py-2 text-white text-sm font-light tracking-wider 
+        hover:bg-[#f28a4a] shadow-lg transition duration-200 ease-in-out w-40`}
+        onClick={() => handleSubmit()}
+      >
+        ADD CAMPAIGN
+      </button>
     </div>
   );
 };
