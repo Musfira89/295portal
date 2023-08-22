@@ -4,18 +4,18 @@ import { RiDeleteBin6Line, RiEditLine } from "react-icons/ri";
 const Displaycampaign = ({ camplist }) => {
     return (
         <div className="flex justify-start items-center gap-4">
-            {camplist.map((item, index) => (
+            {camplist.map((campaign, index) => (
                 <div
                     key={index}
                     className="flex flex-col gap-4 bg-white rounded-lg shadow-lg p-4"
                 >
-                    {item.map((item, index) => (
+                    {Object.entries(campaign).map(([key, value]) => (
                         <div
-                            key={index}
+                            key={key}
                             className="flex justify-between items-center gap-4"
                         >
-                            <div className="text-gray-400">{item.title}</div>
-                            <div className="text-gray-800">{item.value}</div>
+                            <div className="text-gray-400">{key}</div>
+                            <div className="text-gray-800">{value}</div>
                         </div>
                     ))}
                     <div className="flex justify-between items-center">
