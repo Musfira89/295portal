@@ -1,13 +1,46 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function SignIn() {
+  const router = useRouter();
+  const [checkBoxes, setCheckBoxes] = useState([]);
+
+  const handleCheckBoxChange = (value, checked) => {
+    if(checked){
+      setCheckBoxes([...checkBoxes, value]);
+    }else{
+      setCheckBoxes(checkBoxes.filter((item) => item!==value))
+    }
+  }
+
+  useEffect(()=>{
+    console.log("value of checkBoxes with time",checkBoxes);
+  },[checkBoxes])
+
+
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    companyName: "",
+    skypeHandle: "",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "",
+    verticals: [],
+    userVerified: "",
+  });
+  
   return (
     <main>
       <div>
         {/* <!-- component --> */}
         <div class="flex items-center justify-center p-12">
-          {/* <!-- Author: FormBold Team --> */}
-          {/* <!-- Learn More: https://formbold.com --> */}
           <div class="mx-auto w-full max-w-[550px]">
             <h1 className="flex items-center justify-center text-2xl mb-8 text-[#6A64F1] font-semibold ">
               Sign up
@@ -26,6 +59,10 @@ export default function SignIn() {
                     <input
                       type="text"
                       name="fName"
+                      value={user.firstName}
+                      onChange={(e) =>
+                        setUser({ ...user, firstName: e.target.value })
+                      }
                       id="fName"
                       placeholder="First Name"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -44,6 +81,10 @@ export default function SignIn() {
                     <input
                       type="text"
                       name="lName"
+                      value={user.lastName}
+                      onChange={(e) =>
+                        setUser({ ...user, lastName: e.target.value })
+                      }
                       id="lName"
                       placeholder="Last Name"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -62,6 +103,10 @@ export default function SignIn() {
                     <input
                       type="email"
                       name="email"
+                      value={user.email}
+                      onChange={(e) =>
+                        setUser({ ...user, email: e.target.value })
+                      }
                       id="email"
                       placeholder="Enter Email"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -80,6 +125,10 @@ export default function SignIn() {
                     <input
                       type="number"
                       name="phNumber"
+                      value={user.phoneNumber}
+                      onChange={(e) =>
+                        setUser({ ...user, phoneNumber: e.target.value })
+                      }
                       id="phNumber"
                       placeholder="+14155552675"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -98,6 +147,10 @@ export default function SignIn() {
                     <input
                       type="text"
                       name="company"
+                      value={user.companyName}
+                      onChange={(e) =>
+                        setUser({ ...user, companyName: e.target.value })
+                      }
                       id="company"
                       placeholder="Enter Company Name"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -116,6 +169,10 @@ export default function SignIn() {
                     <input
                       type="text"
                       name="company"
+                      value={user.skypeHandle}
+                      onChange={(e) =>
+                        setUser({ ...user, skypeHandle: e.target.value })
+                      }
                       id="company"
                       placeholder="Enter Skype Handle"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -134,6 +191,10 @@ export default function SignIn() {
                     <input
                       type="text"
                       name="address"
+                      value={user.address}
+                      onChange={(e) =>
+                        setUser({ ...user, address: e.target.value })
+                      }
                       id="address"
                       placeholder="Enter your Address"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -152,6 +213,10 @@ export default function SignIn() {
                     <input
                       type="text"
                       name="city"
+                      value={user.city}
+                      onChange={(e) =>
+                        setUser({ ...user, city: e.target.value })
+                      }
                       id="city"
                       placeholder="Enter your City"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -170,6 +235,10 @@ export default function SignIn() {
                     <input
                       type="text"
                       name="state"
+                      value={user.state}
+                      onChange={(e) =>
+                        setUser({ ...user, state: e.target.value })
+                      }
                       id="state"
                       placeholder="Enter your State"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -188,6 +257,10 @@ export default function SignIn() {
                     <input
                       type="number"
                       name="zipCode"
+                      value={user.zipCode}
+                      onChange={(e) =>
+                        setUser({ ...user, zipCode: e.target.value })
+                      }
                       id="zipCode"
                       placeholder="Enter your Zip Code"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -205,6 +278,10 @@ export default function SignIn() {
                     </label>
                     <select
                       id="country"
+                      value={user.country}
+                      onChange={(e) =>
+                        setUser({ ...user, country: e.target.value })
+                      }
                       name="country"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                     >
@@ -543,24 +620,65 @@ export default function SignIn() {
                   Choose Verticals
                 </h2>
                 <div className="absolute top-8 mb-8 w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                <label for="vehicle1"> Health U65</label>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                <label for="vehicle1"> Term Life</label>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                <label for="vehicle1"> Final Expense</label>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                <label for="vehicle1"> Tax Debt</label>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                <label for="vehicle1"> ACA Health insurance</label>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                <label for="vehicle1"> Long distance moving</label>
+                  <input
+                    type="checkbox"
+                    id="health"
+                    name="health"
+                    value="Health U65"
+                    onChange={(e) =>
+                      handleCheckBoxChange(e.target.value, e.target.checked)}
+                  />
+                  <label for="health"> Health U65</label>
+                  <input
+                    type="checkbox"
+                    id="termLife"
+                    name="termLife"
+                    value="Term Life"
+                    onChange={(e) =>
+                      handleCheckBoxChange(e.target.value, e.target.checked)}
+                  />
+                  <label for="termLife"> Term Life</label>
+                  <input
+                    type="checkbox"
+                    id="finalExpense"
+                    name="finalExpense"
+                    value="Final Expense"
+                    onChange={(e) =>
+                      handleCheckBoxChange(e.target.value, e.target.checked)}
+                  />
+                  <label for="finalExpense"> Final Expense</label>
+                  <input
+                    type="checkbox"
+                    id="taxDebt"
+                    name="taxDebt"
+                    value="Tax Debt"
+                    onChange={(e) =>
+                      handleCheckBoxChange(e.target.value, e.target.checked)}
+                  />
+                  <label for="taxDebt"> Tax Debt</label>
+                  <input
+                    type="checkbox"
+                    id="acaHealthInsurance"
+                    name="acaHealthInsurance"
+                    value="ACA Health Insurance"
+                    onChange={(e) =>
+                      handleCheckBoxChange(e.target.value, e.target.checked)}
+                  />
+                  <label for="vehicle1"> ACA Health Insurance</label>
+                  <input
+                    type="checkbox"
+                    id="longDistanceMoving"
+                    name="longDistanceMoving"
+                    value="Long Distance Moving"
+                    onChange={(e) =>
+                      handleCheckBoxChange(e.target.value, e.target.checked)}
+                  />
+                  <label for="longDistanceMoving"> Long distance moving</label>
                 </div>
               </div>
 
-
               <div className="">
-                <button class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                <button class="hover:shadow-form mt-6 rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                   Submit
                 </button>
               </div>
