@@ -1,7 +1,10 @@
-import Displaycampaign from "@/components/view/campaign/display";
-import React from "react";
-import Buttons from "@/components/view/buttons";
+"use client";
+import Displaycampaign from "../../../components/view/campaign/display";
+import React, { useEffect, useState } from "react";
+import Buttons from "../../../components/view/buttons";
 import Link from "next/link";
+import axios from "axios";
+
 const camplist = [
   [
     {
@@ -65,9 +68,21 @@ const camplist = [
   ],
 ];
 const Campaign = () => {
+  const [camp, setCamp] = useState(camplist);
+
+  async function getcampaign() {
+    const res = await axios.get("/api/campaign");
+    console.log(res);
+    if (res.status === 200) {
+      setCamp(res.data.response);
+    }
+  }
+  useEffect(() => {
+    getcampaign();
+  }, []);
   return (
     <div className=" py-10 px-10 flex gap-2 flex-wrap">
-      <Displaycampaign camplist={camplist} />
+      {camp && <Displaycampaign camplist={camp} />}
       <div>
         <Link href={"/campaign/addcampaign"}>
           <Buttons text={"+"} width={"w-10"} />

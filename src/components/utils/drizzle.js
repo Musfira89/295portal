@@ -8,6 +8,7 @@ export const campaign = pgTable("campaign", {
     ddv: varchar("ddv", { length: 255 }).notNull(),
     payout: integer("payout").notNull(),
     net: integer("net").notNull(),
+    states: varchar("states", { length: 255 }).notNull(),
     didnumber: integer("didnumber").notNull(),
     timings: varchar("timings", { length: 255 }).notNull(),
     form: varchar("form", { length: 255 }).notNull(),
