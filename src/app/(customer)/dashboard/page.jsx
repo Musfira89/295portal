@@ -8,17 +8,17 @@ const Dashboard = () => {
   usegetcampaign(camp, setCamp);
 
   return (
-    <div className=" py-10 px-10 flex gap-2 flex-wrap">
+    <div className="flex flex-wrap py-10 px-10 gap-6 ">
       {camp &&
         camp.map((c) => (
-          <div>
+          <div className="bg-black ">
             {Object.entries(c).map(([key, value]) => (
               <div
                 key={key}
-                className="flex justify-between items-center gap-16"
+                className="flex justify-between items-center gap-16 p-4 "
               >
-                <div className="text-gray-400">{key}</div>
-                <div className="text-gray-800">{value}</div>
+                <div className="text-slate-200">{key}</div>
+                <div className="text-slate-200">{value}</div>
               </div>
             ))}
           </div>
