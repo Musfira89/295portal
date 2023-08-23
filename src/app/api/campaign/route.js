@@ -9,7 +9,6 @@ const db = drizzle(client, { schema });
 
 export async function GET() {
     const response = await db.select().from(schema.campaign);
-
     return NextResponse.json({ response }, { status: 200 });
 }
 
