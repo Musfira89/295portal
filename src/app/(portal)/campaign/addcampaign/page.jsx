@@ -48,16 +48,22 @@ const Addcampaign = () => {
     updatedCamp[index].value = newValue; // Update the specific object's value
     setCamp(updatedCamp);
   }
-
+  // after successful post request, emoty fields of input
   async function handleSubmit() {
     const res = await axios.post("/api/campaign", camp);
-    if (res.status === 200) router.push("/campaign");
+    if (res.status === 200) {
+      setCamp(camplist);
+      router.push("/campaign");
+    }
   }
 
   return (
     <div className="px-10 py-10 flex flex-col gap-4">
       {camp.map((item, index) => (
-        <div className="flex gap-6">
+        <div
+          className="flex flex-col  items-start w-full lg:flex-row gap-6 
+          lg:justify-between lg:w-1/3"
+        >
           <label className="font-semibold"> {item.title}</label>
           <input
             type="text"

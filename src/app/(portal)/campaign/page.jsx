@@ -1,88 +1,34 @@
 "use client";
 import Displaycampaign from "../../../components/view/campaign/display";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, Suspense } from "react";
 import Buttons from "../../../components/view/buttons";
+import { CampaignContext } from "../../../components/utils/contextWrapper";
 import Link from "next/link";
 import axios from "axios";
 
-const camplist = [
-  [
-    {
-      title: "Campaign",
-      value: "FE",
-    },
-    {
-      title: "DDV/Without DDV",
-      value: "WITHOUT",
-    },
-    {
-      title: "PAYOUT",
-      value: "$16",
-    },
-    {
-      title: "STATES",
-      value: "CA GA VA",
-    },
-    {
-      title: "DID NUMBER",
-      value: "12345666",
-    },
-    {
-      title: "TIMINGS",
-      value: "8TO5PM",
-    },
-    {
-      title: "FORM",
-      value: "LINK",
-    },
-  ],
-  [
-    {
-      title: "Campaign",
-      value: "FE",
-    },
-    {
-      title: "DDV/Without DDV",
-      value: "WITHOUT",
-    },
-    {
-      title: "PAYOUT",
-      value: "$16",
-    },
-    {
-      title: "STATES",
-      value: "CA GA VA",
-    },
-    {
-      title: "DID NUMBER",
-      value: "12345666",
-    },
-    {
-      title: "TIMINGS",
-      value: "8TO5PM",
-    },
-    {
-      title: "FORM",
-      value: "LINK",
-    },
-  ],
-];
 const Campaign = () => {
-  const [camp, setCamp] = useState(camplist);
+  const [camp, setCamp] = useState();
+  const { state, dispatch } = useContext(CampaignContext);
 
   async function getcampaign() {
     const res = await axios.get("/api/campaign");
-    console.log(res);
     if (res.status === 200) {
-      setCamp(res.data.response);
+      dispatch({ type: "GET_CAMPAIGN", payload: res.data.response });
+      console.log("state", state);
     }
   }
   useEffect(() => {
     getcampaign();
   }, []);
+  useEffect(() => {
+    setCamp(state);
+  }, [state]);
   return (
     <div className=" py-10 px-10 flex gap-2 flex-wrap">
-      {camp && <Displaycampaign camplist={camp} />}
+      {camp && (
+        <Displaycampaign camplist={camp} getcampaign={() => getcampaign()} />
+      )}
+
       <div>
         <Link href={"/campaign/addcampaign"}>
           <Buttons text={"+"} width={"w-10"} />
