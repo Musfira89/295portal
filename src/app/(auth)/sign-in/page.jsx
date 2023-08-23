@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 
 export default function SignIn() {
   const router = useRouter();
@@ -35,6 +35,10 @@ export default function SignIn() {
     verticals: [],
     userVerified: "",
   });
+
+  // const handleSubmit = () => {
+  //   router.push("/");
+  // }
   
   return (
     <main>
