@@ -1,4 +1,4 @@
-import { integer, pgTable, serial, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, varchar, json } from "drizzle-orm/pg-core";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { sql } from "@vercel/postgres";
 
@@ -15,19 +15,19 @@ export const campaign = pgTable("campaign", {
 });
 export const db = drizzle(sql);
 
-export const user = pgTable("user",{
+export const user = pgTable("user", {
     id: serial('id').primaryKey(),
-    firstName: varchar("firstName",{length: 300}).notNull(),
-    lastName: varchar("lastName",{length: 300}).notNull(),
-    email: varchar("email",{length: 300}).notNull(),
+    firstName: varchar("firstName", { length: 300 }).notNull(),
+    lastName: varchar("lastName", { length: 300 }).notNull(),
+    email: varchar("email", { length: 300 }).notNull(),
     phoneNumber: integer("phoneNumber").notNull(),
-    companyName: varchar("company",{length:300}).notNull(),
-    skypeHandle: varchar("skypeHandle",{lenght:300}).notNull(),
-    address: varchar("address",{length:300}).notNull(),
-    city: varchar("city",{length:300}).notNull(),
-    state: varchar("state",{length:300}).notNull(),
+    companyName: varchar("company", { length: 300 }).notNull(),
+    skypeHandle: varchar("skypeHandle", { lenght: 300 }).notNull(),
+    address: varchar("address", { length: 300 }).notNull(),
+    city: varchar("city", { length: 300 }).notNull(),
+    state: varchar("state", { length: 300 }).notNull(),
     zipCode: integer("zipCode").notNull(),
     country: varchar("country").notNull(),
-    verticals:  json("verticals").notNull(),
-    userVerified: boolean("userVerified").notNull(),
+    verticals: json("verticals").notNull(),
+    userVerified: integer("userVerified", { mode: 'boolean' }).notNull(),
 })
