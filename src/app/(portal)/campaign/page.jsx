@@ -14,7 +14,6 @@ const Campaign = () => {
     const res = await axios.get("/api/campaign");
     if (res.status === 200) {
       dispatch({ type: "GET_CAMPAIGN", payload: res.data.response });
-      console.log("state", state);
     }
   }
   useEffect(() => {

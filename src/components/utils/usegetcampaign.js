@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { CampaignContext } from "./contextWrapper";
 import axios from "axios";
 
-function usegetcampaign(camp, setCamp) {
+function usegetcampaign(setCamp) {
 
   const { state, dispatch } = useContext(CampaignContext);
 
@@ -14,6 +14,7 @@ function usegetcampaign(camp, setCamp) {
       setCamp(state);
     }
   }
+
   useEffect(() => {
     get_campaign_db();
   }, []);

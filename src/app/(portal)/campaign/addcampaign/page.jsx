@@ -52,7 +52,7 @@ const Addcampaign = () => {
   async function handleSubmit() {
     const res = await axios.post("/api/campaign", camp);
     if (res.status === 200) {
-      setCamp(camplist);
+      setCamp([]);
       router.push("/campaign");
     }
   }
