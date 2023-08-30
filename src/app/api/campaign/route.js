@@ -14,7 +14,6 @@ export async function GET() {
 
 export async function POST(req) {
     const res = await req.json();
-    console.log(res)
     const response = await db.insert(schema.campaign)
         .values({
             campaign: res[0].value,
@@ -26,7 +25,6 @@ export async function POST(req) {
             timings: res[6].value,
             form: res[7].value
         }).returning();
-    console.log(response)
     return NextResponse.json({ response }, { status: 200 });
 }
 
@@ -51,9 +49,7 @@ export async function DELETE(req) {
     try {
         const { searchParams } = new URL(req.url);
         const param = searchParams.get("id");
-        console.log(param)
         const response = await db.delete(schema.campaign).where(eq(schema.campaign.id, param));
-        console.log(response)
         return NextResponse.json({ response }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });

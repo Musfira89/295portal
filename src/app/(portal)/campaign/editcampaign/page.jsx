@@ -27,7 +27,6 @@ const Editcampaign = () => {
   }
 
   async function handleSubmit() {
-    console.log(camp);
     const res = await axios.put("/api/campaign", camp);
     if (res.status === 200) {
       setCamp({});
@@ -39,17 +38,19 @@ const Editcampaign = () => {
     <div className="px-10 py-10 flex flex-col gap-4">
       {camp && (
         <div className="flex flex-col gap-4 w-[350px] ">
-          {Object.entries(camp).map(([key, value]) => (
-            <div className="flex justify-between w-full">
-              <label className="font-semibold"> {key}</label>
-              <input
-                type="text"
-                value={camp[key]}
-                onChange={(e) => handleChange(key, e.target.value)}
-                className="border-[1px] border-gray-300 rounded-md px-2 py-1"
-              />
-            </div>
-          ))}
+          {Object.entries(camp)
+            .slice(1)
+            .map(([key, value]) => (
+              <div className="flex justify-between w-full">
+                <label className="font-semibold"> {key}</label>
+                <input
+                  type="text"
+                  value={camp[key]}
+                  onChange={(e) => handleChange(key, e.target.value)}
+                  className="border-[1px] border-gray-300 rounded-md px-2 py-1"
+                />
+              </div>
+            ))}
         </div>
       )}
       <button

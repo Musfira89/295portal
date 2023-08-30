@@ -24,3 +24,57 @@ didnumber INTEGER NOT NULL,
 timings VARCHAR(255) NOT NULL,
 form VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE users (
+"id" SERIAL PRIMARY KEY,
+"firstName" VARCHAR(300) NOT NULL,
+"lastName" VARCHAR(300) NOT NULL,
+"email" VARCHAR(300) NOT NULL,
+"phoneNumber" INTEGER NOT NULL,
+"companyName" VARCHAR(300) NOT NULL,
+"skypeHandle" VARCHAR(300) NOT NULL,
+"address" VARCHAR(300) NOT NULL,
+"city" VARCHAR(300) NOT NULL,
+"state" VARCHAR(300) NOT NULL,
+"zipCode" INTEGER NOT NULL,
+"country" VARCHAR NOT NULL,
+"verticals" JSON NOT NULL,
+"userVerified" BOOLEAN NOT NULL
+);
+
+INSERT INTO users (
+"firstName",
+"lastName",
+"email",
+"phoneNumber",
+"companyName",
+"skypeHandle",
+"address",
+"city",
+"state",
+"zipCode",
+"country",
+"verticals",
+"userVerified"
+) VALUES
+('John', 'Doe', 'john.doe@example.com', '1234567890', 'Acme Inc.', 'john.skype', '123 Main St', 'New York', 'NY', '12345', 'USA', '["IT", "Finance"]', true),
+('Jane', 'Smith', 'jane.smith@example.com', '9876543210', 'TechCorp', 'jane.skype', '456 Elm St', 'San Francisco', 'CA', '54321', 'USA', '["Technology", "Engineering"]', false);
+
+// create Earnings table
+CREATE TABLE earnings (
+id SERIAL PRIMARY KEY,
+userid INTEGER NOT NULL ,
+calltoday INTEGER NOT NULL,
+billablestoday INTEGER NOT NULL,
+earningtoday INTEGER NOT NULL,
+totalearning INTEGER NOT NULL,
+totalbillables INTEGER NOT NULL,
+totalcalls INTEGER NOT NULL
+);
+
+CREATE TABLE chartdata (
+id SERIAL PRIMARY KEY,
+userid INTEGER NOT NULL ,
+date VARCHAR(255) NOT NULL,
+earnings INTEGER NOT NULL
+);
