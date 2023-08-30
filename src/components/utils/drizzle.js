@@ -15,13 +15,14 @@ export const campaign = pgTable("campaign", {
 });
 export const db = drizzle(sql);
 
-export const user = pgTable("user", {
+export const users = pgTable("users", {
     id: serial('id').primaryKey(),
     firstName: varchar("firstName", { length: 300 }).notNull(),
     lastName: varchar("lastName", { length: 300 }).notNull(),
     email: varchar("email", { length: 300 }).notNull(),
+    password: varchar("password",{length:300}).notNull(),
     phoneNumber: integer("phoneNumber").notNull(),
-    companyName: varchar("company", { length: 300 }).notNull(),
+    companyName: varchar("companyName", { length: 300 }).notNull(),
     skypeHandle: varchar("skypeHandle", { lenght: 300 }).notNull(),
     address: varchar("address", { length: 300 }).notNull(),
     city: varchar("city", { length: 300 }).notNull(),

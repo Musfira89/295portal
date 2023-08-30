@@ -52,22 +52,28 @@ export default function SignIn() {
       firstName: event.target[0].value,
       lastName: event.target[1].value,
       email: event.target[2].value,
-      phoneNumber: event.target[3].value,
-      companyName: event.target[4].value,
-      skypeHandle: event.target[5].value,
-      address: event.target[6].value,
-      city: event.target[7].value,
-      state: event.target[8].value,
-      zipCode: event.target[9].value,
-      country: event.target[10].value,
+      password:event.target[3].value,
+      phoneNumber: event.target[4].value,
+      companyName: event.target[5].value,
+      skypeHandle: event.target[6].value,
+      address: event.target[7].value,
+      city: event.target[8].value,
+      state: event.target[9].value,
+      zipCode: event.target[10].value,
+      country: event.target[11].value,
       checkBox: checkBoxes,
     };
     console.log("value of target is", checkBoxes);
+    console.log("Form data is=====", formData)
     const isValid = await signUpSchema.isValid(formData);
     console.log(isValid)
     if(isValid){
       //then we have to call to api
       const res = await axios.post("/api/auth/sign-up", formData);
+      console.log("Res of sign-up page is ====",res)
+      if(res.ok){
+        router.push("/sign-in");
+      }
     }
   };
 
@@ -150,6 +156,30 @@ export default function SignIn() {
                       // }
                       id="email"
                       placeholder="Enter Email"
+                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    />
+                  </div>
+                </div>
+                {/* password  */}
+                <div class="w-full px-3 sm:w-1/2">
+                  <div class="mb-5">
+                    <label
+                      for="password"
+                      class="mb-3 block text-base font-medium text-[#07074D]"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="passowrd"
+                      name="password"
+                      // value={formik.values.email}
+                      // onChange={formik.handleChange}
+                      // value={user.email}
+                      // onChange={(e) =>
+                      //   setUser({ ...user, email: e.target.value })
+                      // }
+                      id="password"
+                      placeholder="Enter password"
                       class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                     />
                   </div>
