@@ -66,5 +66,11 @@ export const chartdataRelations = relations(chartdata, ({ one }) => ({
         references: [customer.id]
     }),
 }))
+export const availability = pgTable("availability", {
+    id: serial('id').primaryKey(),
+    userid: integer("userid").notNull(),
+    campid: integer("campid").notNull(),
+    online: integer("userVerified", { mode: 'boolean' }).notNull(),
+})
 export const db = drizzle(sql);
 
