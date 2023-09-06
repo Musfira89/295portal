@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/(auth)/sign-in/page.jsx", "src/app/(auth)/sign-up/page.jsx", "src/app/api/auth/sign-up/route.js"  ],
+, "src/app/(auth)/sign-in/page.jsx", "src/app/(auth)/sign-up/page.jsx", "src/app/api/auth/sign-up/route.js", "src/app/api/auth/sign-in/route.js", "src/app/api/auth/reset-password/route.js"  ],
   "exclude": [
     "node_modules"
   ]

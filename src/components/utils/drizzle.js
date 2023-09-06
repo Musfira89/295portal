@@ -16,26 +16,27 @@ export const campaign = pgTable("campaign", {
 });
 
 
-export const users = pgTable("users", {
+export const customer = pgTable("customers", {
     id: serial('id').primaryKey(),
-    firstName: varchar("firstName", { length: 300 }).notNull(),
-    lastName: varchar("lastName", { length: 300 }).notNull(),
+    firstname: varchar("firstname", { length: 300 }).notNull(),
+    lastname: varchar("lastname", { length: 300 }).notNull(),
     email: varchar("email", { length: 300 }).notNull(),
     password: varchar("password", { length: 300 }).notNull(),
-    phoneNumber: integer("phoneNumber").notNull(),
-    companyName: varchar("company", { length: 300 }).notNull(),
-    skypeHandle: varchar("skypeHandle", { lenght: 300 }).notNull(),
+    phonenumber: integer("phonenumber").notNull(),
+    companyname: varchar("companyname", { length: 300 }).notNull(),
+    skypehandle: varchar("skypehandle", { lenght: 300 }).notNull(),
     address: varchar("address", { length: 300 }).notNull(),
     city: varchar("city", { length: 300 }).notNull(),
     state: varchar("state", { length: 300 }).notNull(),
-    zipCode: integer("zipCode").notNull(),
+    zipcode: integer("zipcode"),
     country: varchar("country").notNull(),
     verticals: json("verticals").notNull(),
-    userVerified: integer("userVerified", { mode: 'boolean' }).notNull(),
+    userverified: integer("userverified", { mode: 'boolean' }).notNull(),
 })
-export const usersRelations = relations(users, ({ one, many }) => ({
+
+export const usersRelations = relations(customer, ({ one, many }) => ({
     earnings: one(earnings, {
-        fields: [users.id],
+        fields: [customer.id],
         references: [earnings.userId]
     }),
     chartdata: many(chartdata)
@@ -60,9 +61,9 @@ export const chartdata = pgTable("chartdata", {
 })
 
 export const chartdataRelations = relations(chartdata, ({ one }) => ({
-    userId: one(users, {
+    userId: one(customer, {
         fields: [chartdata.userid],
-        references: [users.id]
+        references: [customer.id]
     }),
 }))
 export const db = drizzle(sql);

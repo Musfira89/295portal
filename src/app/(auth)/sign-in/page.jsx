@@ -1,38 +1,39 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { signInSchema } from "../../../Validations/SignupValidation";
-// import toast, { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 export default function SignIn() {
-//   const [user, setUser] = useState({
-//     email: "",
-//     password: "",
-//   });
-const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmitForm = async (event) => {
 
+  const handleSubmitForm = async (event) => { 
     event.preventDefault();
     let signInForm = {
       email: event.target[0].value,
       password: event.target[1].value,
     };
-    const isValid = await signInSchema.isValid(formData);
-    if(isValid){
+    const isValid = await signInSchema.isValid(signInForm);
+    if (isValid) {
+      try {
         const res = await axios.post("/api/auth/sign-in", signInForm);
-        console.log("Res of sign-up page is ====",res)
-        // if(res.ok){
-        //   router.push("/home");
-        // }
+        console.log("Res of sign-up page is ====", res);
+        toast.success("Login Succesfull");
+        router.push("/dashboard");
+      } catch (error) {
+        console.log("error message is====",error) 
       }
+    }
   };
   return (
     <div className="flex flex-col items-center justify-center bg-[#16233d] h-screen">
-      {/* <Toaster /> */}
+      <Toaster />
       <h1 className="font-bold text-2xl m-6 text-[#54c2f1] ">
-        {loading ? "Processing..." : "Login"}
       </h1>
       <form onSubmit={handleSubmitForm}>
         <div className="bg-[#A5C9CA]/25 w-[450px] p-8 px-12">
@@ -72,7 +73,7 @@ const [buttonDisabled, setButtonDisabled] = useState(false);
             </div>
 
             <button
-            //   onClick={onLogin}
+              //   onClick={onLogin}
               className="text-white bg-[#1C82AD] hover:bg-[#186c91] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
             >
               {buttonDisabled ? "No Login" : "Login"}
@@ -84,7 +85,7 @@ const [buttonDisabled, setButtonDisabled] = useState(false);
               No Account? | Register here
             </Link>
             <Link
-              href={"/resetPassword"}
+              href={"/reset-password"}
               className="mt-5 text-base font-semibold text-[#91d9f5] hover:underline"
             >
               Forgot Password?

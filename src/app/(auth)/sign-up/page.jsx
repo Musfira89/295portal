@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { signUpSchema } from "../../../Validations/SignupValidation.js";
 import axios from "axios";
 
-
 const checkboxData = [
   "Health U65",
   "Term Life",
@@ -52,7 +51,7 @@ export default function SignIn() {
       firstName: event.target[0].value,
       lastName: event.target[1].value,
       email: event.target[2].value,
-      password:event.target[3].value,
+      password: event.target[3].value,
       phoneNumber: event.target[4].value,
       companyName: event.target[5].value,
       skypeHandle: event.target[6].value,
@@ -64,15 +63,17 @@ export default function SignIn() {
       checkBox: checkBoxes,
     };
     console.log("value of target is", checkBoxes);
-    console.log("Form data is=====", formData)
+    console.log("Form data is=====", formData);
     const isValid = await signUpSchema.isValid(formData);
-    console.log(isValid)
-    if(isValid){
+    console.log(isValid);
+    if (isValid) {
       //then we have to call to api
-      const res = await axios.post("/api/auth/sign-up", formData);
-      console.log("Res of sign-up page is ====",res)
-      if(res.ok){
+      try {
+        const res = await axios.post("/api/auth/sign-up", formData);
+        console.log("Res of sign-up page is ====", res);
         router.push("/sign-in");
+      } catch (error) {
+        console.log("error message is====",error)
       }
     }
   };
