@@ -20,16 +20,32 @@ const Employees = () => {
   }, []);
 
   return (
-    <div>
+    <div className="p-10">
       <h1>Employees</h1>
       <ul>
         {employees &&
           employees.map((employee) => (
-            <li key={employee.id}>
-              <Link href={`/employees/${employee.id}`}>
-                {employee.firstName} {employee.lastName}
+            <div
+              key={employee.id}
+              className="shadow-lg shadow-orange-100/20 px-8 py-4"
+            >
+              <Link
+                href={`/employees/${employee.id}`}
+                className="flex items-center gap-4"
+              >
+                <h1 className="font-bold">
+                  {employee.firstName} {employee.lastName}
+                </h1>
+                <h1>{employee.email}</h1>
+                <div
+                  className={`${
+                    employee.availability?.online
+                      ? "bg-green-500"
+                      : "bg-red-500"
+                  }  w-4 h-4 rounded-full text-white text-sm tracking-wider`}
+                ></div>
               </Link>
-            </li>
+            </div>
           ))}
       </ul>
     </div>
