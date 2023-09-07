@@ -25,7 +25,7 @@ timings VARCHAR(255) NOT NULL,
 form VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE users (
+CREATE TABLE customers (
 "id" SERIAL PRIMARY KEY,
 "firstName" VARCHAR(300) NOT NULL,
 "lastName" VARCHAR(300) NOT NULL,
