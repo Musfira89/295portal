@@ -9,7 +9,7 @@ const db = drizzle(client, { schema });
 
 export async function GET() {
     try {
-        const response = await db.query.users.findMany({
+        const response = await db.query.customer.findMany({
             with: {
                 availability: true,
 
