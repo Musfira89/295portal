@@ -11,8 +11,8 @@ export async function GET(req) {
     try {
         const { searchParams } = new URL(req.url);
         const param = searchParams.get("id");
-        const response = await db.select().from(schema.users)
-            .where(eq(schema.users.id, param));
+        const response = await db.select().from(schema.customer)
+            .where(eq(schema.customer.id, param));
         return NextResponse.json({ response }, { status: 200 });
     } catch (err) {
         console.log(err);
