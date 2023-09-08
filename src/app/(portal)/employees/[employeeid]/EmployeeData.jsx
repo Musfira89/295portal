@@ -1,4 +1,5 @@
 import CalculateEarnings from "./CalculateEarnings";
+
 const EmployeeData = ({ employee }) => {
   return (
     <div className="w-full flex flex-col md:flex-row gap-2">
