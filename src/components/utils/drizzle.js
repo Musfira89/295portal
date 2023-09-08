@@ -15,7 +15,6 @@ export const campaign = pgTable("campaign", {
     form: varchar("form", { length: 255 }).notNull(),
 });
 
-
 export const customer = pgTable("customers", {
     id: serial('id').primaryKey(),
     firstname: varchar("firstname", { length: 300 }).notNull(),
@@ -36,11 +35,11 @@ export const customer = pgTable("customers", {
 
 export const customerRelations = relations(customer, ({ one, many }) => ({
     earnings: one(earnings, {
-        fields: [users.id],
+        fields: [customer.id],
         references: [earnings.userid]
     }),
     availability: one(availability, {
-        fields: [users.id],
+        fields: [customer.id],
         references: [availability.userid]
     }),
     chartdata: many(chartdata)
