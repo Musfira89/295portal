@@ -12,7 +12,6 @@ export async function GET() {
         const response = await db.query.customer.findMany({
             with: {
                 availability: true,
-
             }
         });
         return NextResponse.json({ response }, { status: 200 });
