@@ -73,7 +73,49 @@ export async function POST(req) {
 
         console.log(response);
 
-        return NextResponse.json({ message: "ok" }, { status: 200 });
+        return NextResponse.json({ response }, { status: 200 });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export async function PUT(req) {
+    try {
+        const { searchParams } = new URL(req.url);
+        const param = searchParams.get("id");
+
+        // get the user first 
+        const getuser = await db.query.earnings.findFirst({
+            where: eq(schema.earnings.userid, param)
+        })
+
+        // get the payout
+        const payout = await db.query.availability.findFirst({
+            where: eq(schema.availability.userid, param)
+        });
+        const response = await db.update(schema.earnings)
+            .set({
+                userid: param,
+                calltoday: 0,
+                billablestoday: 0,
+                earningtoday: 0,
+                totalearning: getuser.totalearning - (getuser.billablestoday * payout.payout),
+                totalbillables: getuser.totalbillables - getuser.billablestoday,
+                totalcalls: getuser.totalcalls - getuser.calltoday,
+            })
+            .where(eq(schema.earnings.userid, param))
+            .returning({
+                id: schema.earnings.id,
+                userid: schema.earnings.userid,
+                calltoday: schema.earnings.calltoday,
+                billablestoday: schema.earnings.billablestoday,
+                earningtoday: schema.earnings.earningtoday,
+                totalbillables: schema.earnings.totalbillables,
+                totalcalls: schema.earnings.totalcalls,
+                totalearning: schema.earnings.totalearning,
+            })
+        console.log(response);
+        return NextResponse.json({ response }, { status: 200 });
     } catch (err) {
         console.log(err);
     }
