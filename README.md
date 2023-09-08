@@ -27,40 +27,40 @@ form VARCHAR(255) NOT NULL
 
 CREATE TABLE customers (
 "id" SERIAL PRIMARY KEY,
-"firstName" VARCHAR(300) NOT NULL,
-"lastName" VARCHAR(300) NOT NULL,
+"firstname" VARCHAR(300) NOT NULL,
+"lastname" VARCHAR(300) NOT NULL,
 "email" VARCHAR(300) NOT NULL,
 "password" VARCHAR(300) NOT NULL,
-"phoneNumber" INTEGER NOT NULL,
-"companyName" VARCHAR(300) NOT NULL,
-"skypeHandle" VARCHAR(300) NOT NULL,
+"phonenumber" INTEGER NOT NULL,
+"companyname" VARCHAR(300) NOT NULL,
+"skypehandle" VARCHAR(300) NOT NULL,
 "address" VARCHAR(300) NOT NULL,
 "city" VARCHAR(300) NOT NULL,
 "state" VARCHAR(300) NOT NULL,
-"zipCode" INTEGER NOT NULL,
+"zipcode" INTEGER NOT NULL,
 "country" VARCHAR NOT NULL,
 "verticals" JSON NOT NULL,
-"userVerified" BOOLEAN NOT NULL
+"userverified" BOOLEAN NOT NULL
 );
 
-INSERT INTO users (
-"firstName",
-"lastName",
+INSERT INTO customers (
+"firstname",
+"lastname",
 "email",
 "password",
-"phoneNumber",
-"companyName",
-"skypeHandle",
+"phonenumber",
+"companyname",
+"skypehandle",
 "address",
 "city",
 "state",
-"zipCode",
+"zipcode",
 "country",
 "verticals",
-"userVerified"
+"userverified"
 ) VALUES
-('John', 'Doe', 'john.doe@example.com','hira34', '1234567890', 'Acme Inc.', 'john.skype', '123 Main St', 'New York', 'NY', '12345', 'USA', '["IT", "Finance"]', true),
-('Jane', 'Smith', 'jane.smith@example.com','4321', '9876543210', 'TechCorp', 'jane.skype', '456 Elm St', 'San Francisco', 'CA', '54321', 'USA', '["Technology", "Engineering"]', false);
+('John', 'Doe', 'john.doe@example.com','hira34', '123567890', 'Acme Inc.', 'john.skype', '123 Main St', 'New York', 'NY', '12345', 'USA', '["IT", "Finance"]', true),
+('Jane', 'Smith', 'jane.smith@example.com','4321', '987543210', 'TechCorp', 'jane.skype', '456 Elm St', 'San Francisco', 'CA', '54321', 'USA', '["Technology", "Engineering"]', false);
 
 // create Earnings table
 CREATE TABLE earnings (
