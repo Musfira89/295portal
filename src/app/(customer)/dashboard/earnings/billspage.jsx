@@ -20,7 +20,7 @@ const Billspage = ({ data }) => {
       <div className="flex flex-col gap-4">
         <div className="rounded-lg bg-white text-black text-2xl p-4 flex flex-col shadow-md">
           <h1>Total Billables</h1>
-          <h2>$ {data.totalbillables}</h2>
+          <h2> {data.totalbillables}</h2>
         </div>
         <div className="rounded-lg bg-white text-black p-4 text-xl flex flex-col shadow-md">
           <h1>Billables Today</h1>
