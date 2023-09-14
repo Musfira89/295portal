@@ -46,12 +46,10 @@ export async function PUT(req) {
 }
 
 export async function DELETE(req) {
-    try {
-        const { searchParams } = new URL(req.url);
-        const param = searchParams.get("id");
-        const response = await db.delete(schema.campaign).where(eq(schema.campaign.id, param));
-        return NextResponse.json({ response }, { status: 200 });
-    } catch (error) {
-        return NextResponse.json({ error }, { status: 500 });
-    }
+
+    const { searchParams } = new URL(req.url);
+    const param = searchParams.get("id");
+    const response = await db.delete(schema.campaign).where(eq(schema.campaign.id, param));
+    return NextResponse.json({ response }, { status: 200 });
+
 }
