@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 import Invoice from "./invoice";
 import Billspage from "./billspage";
 import LineChart from "./linechart";
