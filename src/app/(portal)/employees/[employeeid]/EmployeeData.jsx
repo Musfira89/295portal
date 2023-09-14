@@ -11,7 +11,6 @@ const EmployeeData = ({ employee }) => {
           <div key={key} className="flex flex-col gap-2">
             <div className="flex justify-between items-center gap-16">
               <h1 className="text-gray-800 font-bold">{key}</h1>
-
               <h2 className="text-gray-800">{value}</h2>
             </div>
             <div className="w-full h-[1px] bg-gray-300"></div>
