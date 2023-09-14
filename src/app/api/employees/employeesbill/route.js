@@ -1,4 +1,3 @@
-export const dynamic = 'force-static'
 import { NextResponse } from "next/server";
 import * as schema from '../../../../components/utils/drizzle'
 import { drizzle } from 'drizzle-orm/postgres-js';
