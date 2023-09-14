@@ -1,6 +1,7 @@
 import React from "react";
 
 const Billspage = ({ data }) => {
+  console.log("data :", data);
   return (
     <div className="flex flex-col md:flex-row p-10 gap-4 w-full md:w-1/2">
       <div className="flex flex-col gap-4">
