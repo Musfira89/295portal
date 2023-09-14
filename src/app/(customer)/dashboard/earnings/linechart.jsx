@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 
-const LineChart = ({ datas }) => {
+const LineChart = () => {
   const [empdata, setempData] = useState([]);
   const [labels, setLabels] = useState([]);
   const [earnings, setEarnings] = useState([]);
@@ -18,7 +18,6 @@ const LineChart = ({ datas }) => {
     }
   }
   useEffect(() => {
-    console.log("Line chart data : ", datas);
     getData();
   }, []);
 
