@@ -11,8 +11,10 @@ export async function GET(req) {
 
     const { searchParams } = new URL(req.url);
     const param = searchParams.get("id");
+    console.log("param value : ", param);
     const response = await db.select().from(schema.earnings)
         .where(eq(schema.earnings.userid, param));
+    console.log("response value : ", response);
     return NextResponse.json({ response }, { status: 200 });
 
 }
