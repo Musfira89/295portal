@@ -16,6 +16,7 @@ async function getEmployeeData(employeeid) {
 
 const Earnings = async () => {
   const employeeData = await getEmployeeData(1);
+  console.log("employeeData :", employeeData);
   return (
     <div className="flex flex-col w-full p-10">
       <div className="w-full flex flex-col md:flex-row">
