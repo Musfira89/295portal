@@ -20,7 +20,7 @@ const Earnings = async () => {
   return (
     <div className="flex flex-col w-full p-10">
       <div className="w-full flex flex-col md:flex-row">
-        {employeeData && <Billspage data={employeeData[0]} />}
+        {/* {employeeData && <Billspage data={employeeData[0]} />} */}
         <Invoice />
       </div>
       <div className="w-full p-10 flex flex-col justify-center">
