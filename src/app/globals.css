@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero-text {
+  background: -webkit-linear-gradient(#ffa36a, #eb2525);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.font-heading {
+  font-family: Inter, sans-serif;
+}
+
+.square-button {
+  border: 2px solid white;
+  background: none;
+  color: white;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.square-button:hover {
+  color: black;
+  border-color: black;
+}
